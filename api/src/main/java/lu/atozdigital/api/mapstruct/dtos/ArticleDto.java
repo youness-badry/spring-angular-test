@@ -1,29 +1,24 @@
-package lu.atozdigital.api.entities;
+package lu.atozdigital.api.mapstruct.dtos;
 
-import lombok.AllArgsConstructor;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "articles")
-public class Article {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ArticleDto {
+    @JsonProperty
     private Integer id;
-    @Column
+    @JsonProperty
     private String name;
-    @Column
+    @JsonProperty
     private Float price;
-    @Column
+    @JsonProperty
     private String picture;
 
-    public Article() {
+    public ArticleDto() {
     }
 
-    public Article(Integer id, String name, Float price, String picture) {
+    public ArticleDto(Integer id, String name, Float price, String picture) {
         this.id = id;
         this.name = name;
         this.price = price;
