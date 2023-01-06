@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-create-article',
@@ -14,16 +15,28 @@ export class CreateArticleComponent implements OnInit {
     picture: new FormControl(''),
 
   });
-  constructor() { }
+
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
   }
 
   createArticle() {
-    console.log(this.createArticleForm);
-    /*this.createArticleForm.controls.name.setValue();
-    this.createArticleForm.controls.price.setValue(element.description);
-    this.createArticleForm.controls.picture.setValue(element.price);*/
+    var article = {
+      name: this.createArticleForm.value.name,
+      price: parseInt(String(this.createArticleForm.value.price)),
+      picture: this.createArticleForm.value.picture
+    };
+
+    this.dataService.saveArticle(article);
+
   }
+
+  isArticleCreated() {
+    return this.dataService.isArticleCreated();
+
+  }
+
 
 }

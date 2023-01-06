@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-card-article',
@@ -8,10 +9,20 @@ import {Component, Input, OnInit} from '@angular/core';
 export class CardArticleComponent implements OnInit {
 
   @Input() article: any;
+  articleExistingOrder: any;
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+  }
+
+  isArticleLinkedToExisitngOrder() {
+    let existingOrders = this.dataService.getOrders();
+  }
+
+
+  OnCLickOrder() {
+
   }
 
 }

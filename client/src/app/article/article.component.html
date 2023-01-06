@@ -5,7 +5,7 @@
   </button>
 </div>
 
-<div *ngIf="isArticlesEmpty()" class="grid grid-cols-5 ml-10 mt-6 mb-20 gap-y-5">
+<div *ngIf="!isArticlesEmpty()" class="grid grid-cols-4 ml-10 mt-6 mb-20 gap-2 justify-between">
   <app-card-article *ngFor="let article of articles; let i = index" [article]="article"></app-card-article>
 </div>
 

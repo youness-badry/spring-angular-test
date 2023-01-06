@@ -1,20 +1,16 @@
 package lu.atozdigital.api.controllers;
 
-import lu.atozdigital.api.entities.Article;
 import lu.atozdigital.api.entities.Order;
-import lu.atozdigital.api.errors.ArticleNotFoundException;
 import lu.atozdigital.api.errors.OrderNotFoundException;
-import lu.atozdigital.api.mapstruct.dtos.ArticleDto;
 import lu.atozdigital.api.mapstruct.dtos.OrderDto;
 import lu.atozdigital.api.mapstruct.mappers.MapStructMapper;
-import lu.atozdigital.api.services.ArticleService;
 import lu.atozdigital.api.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 public class OrderController {
 

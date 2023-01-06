@@ -26,10 +26,10 @@ export class ArticleComponent implements OnInit {
   isArticlesEmpty() {
     let articles = this.dataService.getArticles();
     if (articles === undefined || articles.length == 0) {
-       return false;
+       return true;
     }
     this.articles = articles;
-    return true;
+    return false;
   }
 
 
