@@ -16,7 +16,8 @@ export class DataService {
       .get('http://localhost:8080/articles')
       .subscribe(response => {
         this.articles = response;
-      })
+      });
+
   }
 
   getArticles() {

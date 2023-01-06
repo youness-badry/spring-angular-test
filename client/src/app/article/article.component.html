@@ -1,37 +1,22 @@
+
 <div class="flex justify-end">
-  <button (click)="onClick()" type="button" class="text-white mt-4 mr-20 bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center text-center">Create article</button>
+  <button routerLink="/articles/create" type="button" class="text-white mt-4 mr-20 bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center text-center">
+    Create article
+  </button>
 </div>
-<div class="grid grid-cols-5 ml-10 mt-6 mb-20 gap-y-5">
-  <div class="h-100 w-60 bg-white mt-5 border border-gray-200 rounded-lg shadow-md ">
-    <img class="rounded-t-lg w-60 h-60" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5-UvNiZlgXARCnCibD0eHTEehZm0WtScNWQ&usqp=CAU" alt="" />
-    <div class="p-5">
 
-      <h5 class="w-30 mb-2 text-sm text-left font-semibold tracking-tight text-gray-900">Teworthy technology acquisitions 2021</h5>
-
-      <div class="flex justify-between mt-6">
-        <span class="text-xl self-center font-bold text-gray-900">599 Dh</span>
-        <a class="text-white bg-blue-700 hover:cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Order</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="h-100 w-60 bg-white mt-5 border border-gray-200 rounded-lg shadow-md ">
-    <img class="rounded-t-lg w-60 h-60" src="https://static.nike.com/a/images/f_auto,cs_srgb/w_1536,c_limit/ade4dae2-ad8d-46f8-89a2-f3b459bebfdf/women-s-shoes-clothing-accessories.jpg" alt="" />
-    <div class="p-5">
-
-      <h5 class="w-30 mb-2 text-sm text-left font-semibold tracking-tight text-gray-900">Noteworthy technology acquisitions 2021 Noteworthy technology acquisitions 2021</h5>
-
-      <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
-        Read more
-        <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-      </a>
-    </div>
-  </div>
-
-
-
-
-
+<div *ngIf="isArticlesEmpty()" class="grid grid-cols-5 ml-10 mt-6 mb-20 gap-y-5">
+  <app-card-article *ngFor="let article of articles; let i = index" [article]="article"></app-card-article>
 </div>
+
+
+
+
+
+
+
+
+
+
 
 

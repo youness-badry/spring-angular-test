@@ -7,18 +7,26 @@ import { HeaderComponent } from './header/header.component';
 import { ArticleComponent } from './article/article.component';
 import { OrderComponent } from './order/order.component';
 import {HttpClientModule} from "@angular/common/http";
+import {CommonModule} from "@angular/common";
+import { CardArticleComponent } from './article/card-article/card-article.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { CreateArticleComponent } from './article/create-article/create-article.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ArticleComponent,
-    OrderComponent
+    OrderComponent,
+    CardArticleComponent,
+    CreateArticleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

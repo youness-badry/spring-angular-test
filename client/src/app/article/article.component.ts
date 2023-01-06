@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../services/data.service";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-article',
@@ -14,10 +15,22 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.fetchArticles();
-    this.articles = this.dataService.getArticles();
   }
 
   onClick() {
+    console.log(this.articles.length);
+    console.log("test test "+this.articles);
 
   }
+
+  isArticlesEmpty() {
+    let articles = this.dataService.getArticles();
+    if (articles === undefined || articles.length == 0) {
+       return false;
+    }
+    this.articles = articles;
+    return true;
+  }
+
+
 }
