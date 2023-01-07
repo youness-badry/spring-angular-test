@@ -25,4 +25,20 @@ export class OrderComponent implements OnInit {
     return false;
   }
 
+  isOrderFinished(order: any) {
+    return this.dataService.isOrderFinished(order);
+  }
+
+
+  onClickFinish() {
+    this.dataService.setOrderStatus("Finished");
+  }
+
+  onClickEditOrder() {
+
+  }
+
+  formatDate(date:any) {
+    return date.substring(0, 10) + " " + date.substring(11, 19);
+  }
 }
