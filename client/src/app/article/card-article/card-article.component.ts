@@ -9,16 +9,24 @@ import {DataService} from "../../services/data.service";
 export class CardArticleComponent implements OnInit {
 
   @Input() article: any;
-  articleInOngoingOrder: any = false;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.articleInOngoingOrder = this.dataService.isArticleExistInOngoingOrder(this.article);
   }
 
   OnCLickOrder() {
     this.dataService.addArticleToOrder(this.article);
+  }
+
+  isArticleInOngoingOrder() {
+    console.log(this.dataService.isArticleExistInOngoingOrder(this.article));
+    return this.dataService.isArticleExistInOngoingOrder(this.article);
+  }
+
+  test() {
+    console.log(this.dataService.getOrders());
+    console.log(this.dataService.getOngoingOrder());
   }
 
 }

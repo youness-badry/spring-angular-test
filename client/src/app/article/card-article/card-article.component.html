@@ -8,9 +8,10 @@
 
     <div class="flex justify-between mt-6">
       <span class="text-xl self-center font-bold text-gray-900">{{article.price}} Dh</span>
-      <button [disabled]="articleInOngoingOrder" (click)="OnCLickOrder()" type="button" class="text-white bg-blue-600 rounded-full px-5 py-3 text-center mr-2 mb-2 focus:outline-none disabled:bg-blue-300 hover:bg-blue-800" >Order</button>
+      <button [disabled]="isArticleInOngoingOrder()" (click)="OnCLickOrder()" type="button" class="text-white bg-blue-600 rounded-full px-5 py-3 text-center mr-2 mb-2 focus:outline-none disabled:bg-blue-300 hover:bg-blue-800" >Order</button>
 
     </div>
   </div>
 </div>
+<button (click)="test()" type="button" class="text-white bg-blue-600 rounded-full px-5 py-3 text-center mr-2 mb-2 focus:outline-none disabled:bg-blue-300 hover:bg-blue-800" >Test</button>
 

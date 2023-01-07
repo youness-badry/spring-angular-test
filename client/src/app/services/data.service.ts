@@ -7,11 +7,11 @@ import {HttpClient} from "@angular/common/http";
 export class DataService {
 
   private articles: any = [];
-  private createArticleResponse:any;
+  private createArticleResponse: any;
   private orders: any = [];
-  private ongoingOrder:any;
-  private createOrderResponse:any;
-  private updateOrderResponse:any;
+  private ongoingOrder: any;
+  private createOrderResponse: any;
+  private updateOrderResponse: any;
 
   private count = 9820;
 
@@ -29,7 +29,7 @@ export class DataService {
   }
 
   saveArticle(article: any) {
-    this.http.post('http://localhost:8080/articles', article).subscribe( response => {
+    this.http.post('http://localhost:8080/articles', article).subscribe(response => {
       this.createArticleResponse = response;
     })
   }
@@ -47,86 +47,108 @@ export class DataService {
       .get('http://localhost:8080/orders')
       .subscribe(response => {
         this.orders = response;
+      }, error => {
+
+      }, () => {
+        this.setOngoingOrder();
       });
 
-    this.setOngoingOrder();
+
   }
 
   setOngoingOrder() {
-    this.orders.forEach((order:any) => {
+    if (this.orders !== undefined) {
+      this.ongoingOrder = undefined;
+      this.orders.forEach((order: any) => {
+        if (order.status === "Ongoing") {
+          this.ongoingOrder = order;
+        }
+      })
+    }
 
-    })
   }
 
-  createOrder(order:any) {
-    this.http.post('http://localhost:8080/orders', order).subscribe( response => {
+  createOrder(order: any) {
+    this.http.post('http://localhost:8080/orders', order).subscribe(response => {
       this.createOrderResponse = response;
+    }, error => {
+
+    }, () => {
+      this.ongoingOrder = order;
+      this.fetchOrders();
     })
+
   }
 
-  updateOrder(orderId:any, order:any) {
-    this.http.put(`http://localhost:8080/orders/${orderId}`, order).subscribe( response => {
+  updateOrder(orderId: any, order: any) {
+    this.http.put(`http://localhost:8080/orders/${orderId}`, order).subscribe(response => {
       this.updateOrderResponse = response;
+    }, error => {
+
+    }, () => {
+      this.fetchOrders();
     })
+
   }
 
   getOrders() {
     return this.orders;
   }
 
-  addArticleToOrder(article:any) {
-    if(this.ongoingOrder === undefined || this.ongoingOrder.status === "Finished") {
+  addArticleToOrder(article: any) {
+    if (this.ongoingOrder === undefined || this.ongoingOrder.status === "Finished") {
       let order = {
-        reference: "REF"+this.count,
+        reference: "REF" + this.count,
         status: "Ongoing",
         articles: [article],
         orderDate: Date.now(),
       }
       this.count++;
       this.createOrder(order);
-      this.ongoingOrder = order;
-      this.fetchOrders();
-    } else if(this.ongoingOrder.status === "Ongoing") {
+
+    } else if (this.ongoingOrder.status === "Ongoing") {
       this.ongoingOrder.articles.push(article);
       this.updateOrder(this.ongoingOrder.id, this.ongoingOrder);
-      this.fetchOrders();
+
     }
   }
 
-  isArticleExistInOngoingOrder(article:any) {
+  isArticleExistInOngoingOrder(article: any) {
     if (this.ongoingOrder !== undefined) {
-      return this.ongoingOrder.articles.forEach((art:any, index:any, arr:any) => {
-        if (index !== arr.length && art.id === article.id) {
-          return true;
-        } else {
-          return false;
+      let exist = false;
+      this.ongoingOrder.articles.forEach((art: any) => {
+        if (art.id === article.id) {
+          exist = true;
         }
-
       })
-    } else {
-      return false;
+      return exist;
     }
+    return false;
 
   }
 
-  setOrderStatus(status:any) {
-    this.ongoingOrder.status = status;
-    this.updateOrder(this.ongoingOrder.id, this.ongoingOrder);
-    this.fetchOrders();
+  setOrderStatus(status: any, order: any) {
+    if (this.ongoingOrder != undefined) {
+      this.ongoingOrder.status = status;
+      this.updateOrder(this.ongoingOrder.id, this.ongoingOrder);
+    }
+
   }
 
   isOrderFinished(order: any) {
-    console.log(order);
-    console.log(this.ongoingOrder);
-    if(this.ongoingOrder === undefined) {
+    if (this.ongoingOrder === undefined) {
       return true;
     }
-    if(order.id === this.ongoingOrder.id) {
+    if (order.id === this.ongoingOrder.id) {
       return this.ongoingOrder.status === "Finished";
-    }else {
+    } else {
       return true;
     }
 
+  }
+
+  getOngoingOrder() {
+    return this.ongoingOrder;
   }
 
 

@@ -30,8 +30,8 @@ export class OrderComponent implements OnInit {
   }
 
 
-  onClickFinish() {
-    this.dataService.setOrderStatus("Finished");
+  onClickFinish(order:any) {
+    this.dataService.setOrderStatus("Finished",order);
   }
 
   onClickEditOrder() {
@@ -41,4 +41,5 @@ export class OrderComponent implements OnInit {
   formatDate(date:any) {
     return date.substring(0, 10) + " " + date.substring(11, 19);
   }
+
 }

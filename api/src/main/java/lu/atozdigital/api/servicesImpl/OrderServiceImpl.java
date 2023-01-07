@@ -30,6 +30,9 @@ public class OrderServiceImpl implements OrderService {
     public Order updateOrder(Integer orderId, Order newOrder) throws OrderNotFoundException {
         Optional<Order> existingOrder = orderRepository.findById(orderId);
         if (existingOrder.isPresent()) {
+            existingOrder.get().setReference(newOrder.getReference());
+            existingOrder.get().setStatus(newOrder.getStatus());
+            existingOrder.get().setOrderDate(newOrder.getOrderDate());
             existingOrder.get().setArticles(newOrder.getArticles());
             return orderRepository.save(existingOrder.get());
 

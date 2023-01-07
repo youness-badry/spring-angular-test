@@ -15,6 +15,7 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.fetchArticles();
+    this.dataService.fetchOrders();
   }
 
   onClick() {
