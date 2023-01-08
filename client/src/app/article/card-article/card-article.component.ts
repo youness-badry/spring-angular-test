@@ -20,13 +20,12 @@ export class CardArticleComponent implements OnInit {
   }
 
   isArticleInOngoingOrder() {
-    console.log(this.dataService.isArticleExistInOngoingOrder(this.article));
     return this.dataService.isArticleExistInOngoingOrder(this.article);
   }
 
-  test() {
+/*  test() {
     console.log(this.dataService.getOrders());
     console.log(this.dataService.getOngoingOrder());
-  }
+  }*/
 
 }
